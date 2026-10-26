@@ -1,0 +1,9 @@
+/target/
+/release/
+/out/
+*.log
+*.tmp
+*.bad
+*.bak
+.vscode/
+.idea/
