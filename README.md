@@ -12,14 +12,6 @@ Rust + wgpu + WGSL 实时渲染，透明无边框窗口。单击核心会从黑�
 
 ---
 
-## 快速开始
-
-### 直接运行
-
-发布包解压后双击 `Singularity.exe`，无需安装、无需管理员权限、无需额外运行时。
-
-首次运行如遇 SmartScreen，选择“更多信息” → “仍要运行”。
-
 ### 从源码构建
 
 环境：Windows 10 2004+ / Windows 11 x64，Rust stable + MSVC 工具链，支持 DX12 / Vulkan / OpenGL 的 GPU。
@@ -87,7 +79,7 @@ powershell -ExecutionPolicy Bypass -File .\package.ps1
 - 原图标区域由补丁遮住，精灵缩小飞入、放大吐出，再与真实图标无缝交接。
 - 只通过桌面 ListView 移动快捷方式位置；不修改、删除或重命名任何文件。
 - 面板打开、全屏、暂停、拖拽时不会触发吸收；失败通过托盘气泡提示。
-- **引力波圆环**为默认效果：约 10–24 秒一次，向外扩散并扭曲背景，无开关。
+- **引力波圆环**为默认效果：约 10–24 秒一次，向外扩散并扭曲背景。
 
 ### 设置面板（360 × 500 DIP）
 
@@ -185,7 +177,7 @@ Singularity/
 │  └─ preview.png         README 预览图
 ├─ docs/
 │  └─ code_specification.md  完整代码说明书
-├─ release/                  预编译产物（git 忽略，由 package.ps1 生成）
+├─ release/                  预编译产物（git 忽略，不过可以由 package.ps1 生成）
 │  └─ v1.5.0/
 │     ├─ Singularity.exe
 │     └─ Singularity-win64.zip
@@ -195,8 +187,6 @@ Singularity/
 ├─ Cargo.lock
 └─ README.md
 ```
-
-预编译版本与源码分离：`release/v<version>/` 只保留 exe 与 zip，不放置散落的 README；README 只存在于项目根目录和 zip 内部（zip 同时附带 `docs/code_specification.md` 与 `assets/preview.png`）。`release/` 被 `.gitignore` 忽略。
 
 渲染路径：WGSL 场景 → Rgba16Float HDR → 合成/泛光/ACES → BGRA 预乘 alpha → `UpdateLayeredWindow`。  
 窗口边长约 `6.0 × 半径`；核心命中半径约 `1.3 × 半径`。
